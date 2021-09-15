@@ -32,28 +32,16 @@ namespace TestApp
         VideoEncodingProperties m_vProperty;
         MediaComposition m_composition;
         MediaClip m_clip;
-        MediaOverlay m_overlay;
-        MediaOverlayLayer m_overlayLayer;
         VideoEffectDefinition m_vEffectDefinition;
-        BasicEffectProperty property;
 
         public MainPage()
         {
             this.InitializeComponent();
             m_composition = new MediaComposition();
-            m_overlayLayer = new MediaOverlayLayer();
 
-            property = new BasicEffectProperty();
-            var prop = new PropertySet();
-            prop.Add(nameof(BasicEffect.Property), property);
-            m_vEffectDefinition = new VideoEffectDefinition(typeof(BasicEffect).FullName, prop);
+            m_vEffectDefinition = new VideoEffectDefinition(typeof(BasicEffect).FullName);
 
             m_profile = MediaEncodingProfile.CreateMp4(VideoEncodingQuality.Vga);
-        }
-
-        private void m_seek_Scale_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
-        {
-            property.Scale = 1 + (e.NewValue / m_seek_Scale.Maximum);
         }
 
         private async void m_btn_openFile_Click(object sender, RoutedEventArgs e)
@@ -91,12 +79,6 @@ namespace TestApp
         private void Refresh()
         {
             m_mediaElement.SetMediaStreamSource(m_composition.GenerateMediaStreamSource(m_profile));
-        }
-
-        private void m_ts_shape_Toggled(object sender, RoutedEventArgs e)
-        {
-            property.IsShapeActive = m_ts_shape.IsOn;
-            Refresh();
         }
     }
 }

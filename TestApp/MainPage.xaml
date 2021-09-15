@@ -29,18 +29,7 @@
                         Margin="0,0,10,0">
                     <SymbolIcon Symbol="OpenFile"/>
                 </Button>
-                <ToggleSwitch OnContent="Shape On"
-                              OffContent="Shape Off"
-                              x:Name="m_ts_shape"
-                              Toggled="m_ts_shape_Toggled"/>
             </StackPanel>
-            <Slider HorizontalAlignment="Stretch"
-                    x:Name="m_seek_Scale"
-                    Grid.Row="1"
-                    Minimum="-100"
-                    Maximum="100"
-                    ValueChanged="m_seek_Scale_ValueChanged"/>
-            
         </Grid>
         
     </Grid>
